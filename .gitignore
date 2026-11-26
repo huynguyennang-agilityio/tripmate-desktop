@@ -1,0 +1,15 @@
+# Rust build output
+target/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Environment files: the repository is public, never commit one
+.env
+.env*
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
