@@ -10,6 +10,11 @@ pub fn run() {
         .run(tauri::generate_context!())
         .expect("error while running TripMate Desktop");
 }
+/// DF1-2 throwaway, do not merge: a warn-level clippy lint.
+pub fn df1_two() -> i32 {
+    return 2;
+}
+
 
 #[cfg(test)]
 mod tests {
