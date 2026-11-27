@@ -47,8 +47,9 @@ flowchart LR
 - **The shell does only what the PRD lists** (DESK-01 to DESK-07). It runs
   no money, voting, or Gap logic: the backend owns the rules.
 - **No secrets in the client.** The repository and the app are public.
-- **The web view may call only what a capability allows.** Today that is
-  `core:default` for the main window (`capabilities/default.json`).
+- **The web view may call only what a capability allows.** Today the main
+  window has no permission at all (an empty list in
+  `capabilities/default.json`); each card adds only the permissions it uses.
 
 The full picture is in
 [architecture.md](https://github.com/huynguyennang-agilityio/tripmate-docs/blob/main/docs/architecture.md),

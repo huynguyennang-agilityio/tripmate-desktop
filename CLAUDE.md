@@ -171,7 +171,7 @@ tripmate-desktop/
 ├── .github/               workflows (ci, flow, risk-gate) and risk-paths.toml
 ├── capabilities/          what the web view may call (default.json)
 ├── icons/                 app icons
-├── scripts/               Node scripts shared by CI and every machine
+├── scripts/               Node scripts run by the hook and on every machine
 ├── src/
 │   ├── main.rs            entry point; calls lib.rs
 │   └── lib.rs             pub fn run(), the Tauri builder
