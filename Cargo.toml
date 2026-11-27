@@ -1,0 +1,21 @@
+[package]
+name = "tripmate-desktop"
+version = "0.1.0"
+description = "TripMate Desktop: the Web client in a native window"
+edition = "2024"
+rust-version = "1.100"
+publish = false
+
+[lib]
+name = "tripmate_desktop_lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "tripmate-desktop"
+path = "src/main.rs"
+
+[build-dependencies]
+tauri-build = "2.7.6"
+
+[dependencies]
+tauri = "2.12.7"
