@@ -144,6 +144,8 @@ always skipped; never require them.
   `rust-toolchain.toml`, `build.rs`, `tauri.conf.json`, `capabilities/**`,
   `.gitattributes`. Low: `src/**`, `tests/**`, `ui/**`, `icons/**`,
   `tasks/**`, `README.md`, `.gitignore`. A path no rule names is High.
+  `src/**` is Low, so a command or a lint attribute added there passes the
+  gate; see the two rules in Conventions, which the diff review enforces.
 
 ### Rust tests
 
@@ -192,6 +194,17 @@ tripmate-desktop/
   owns the rules.
 - Add no Tauri plugin and no capability beyond what the card needs. A
   capability widens what the web view may call, so it is a High path.
+- A `#[tauri::command]` is reachable from every window until the app
+  declares an app manifest. The card that adds the first command declares
+  it in `build.rs` (`tauri_build::Attributes::new().app_manifest(AppManifest::new().commands(&[...]))`),
+  lists every command there, and grants each one in `capabilities/**`.
+  Both are High paths. An empty manifest gates nothing (tauri-build 2.7.6,
+  `src/acl.rs` lines 421-425), so never add one without a real command.
+  Until then, the diff review checks that no command is added without this.
+- Lint attributes (`#[allow]`, `#[expect]`, `#![allow]`, `#![expect]`) in
+  `src/**` are a known limit of the Low level: they can switch off the
+  `clippy` gate. The diff review checks each one; one that silences a
+  warning without a reason in the code is a finding.
 - Commit `Cargo.lock`. Use `--locked` in CI and in checks you run before a push.
 - Shared scripts are Node (`.mjs`), never PowerShell or bash, so they run
   the same on Windows and macOS.

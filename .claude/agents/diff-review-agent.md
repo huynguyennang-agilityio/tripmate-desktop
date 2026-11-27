@@ -45,6 +45,16 @@ Every finding is posted on the pull request at its file and line, and
 says what goes wrong and how to fix it. No remark about style that
 `cargo clippy` decides, and nothing CI already checks.
 
+Always check these two, because the risk gate cannot (`src/**` is Low):
+
+- A new `#[tauri::command]` or `invoke_handler` without an entry in the
+  app manifest in `build.rs` and a grant in `capabilities/**`. Until the
+  app declares a manifest, every window may call every command. An empty
+  manifest gates nothing.
+- Every new lint attribute in `src/**` (`#[allow]`, `#[expect]`,
+  `#![allow]`, `#![expect]`). One that silences a warning without a reason
+  in the code is a finding.
+
 One summary comment per round gives:
 
 - The impact: what the diff changes outside the card (capabilities and
