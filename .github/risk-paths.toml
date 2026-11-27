@@ -1,0 +1,97 @@
+# Path list of the risk gate (EPIC-11 spec, section 2.12; development-flow.md, section 2.1).
+#
+# A changed path's level is the highest level of the rules that match it. A path no rule matches
+# counts as High. The flow checks also treat this file, `.github/workflows/**`, every `CLAUDE.md`,
+# and `.claude/agents/**` as High, whatever it says.
+#
+# Globs are matched from the repository root: `*` stays in one folder, `**` crosses folders.
+
+[[rule]]
+glob = ".github/**"
+level = "High"
+reason = "CI, the flow checks, and this path list"
+
+[[rule]]
+glob = "scripts/**"
+level = "High"
+reason = "The checks of this repository"
+
+[[rule]]
+glob = "**/CLAUDE.md"
+level = "High"
+reason = "Rules every agent follows"
+
+[[rule]]
+glob = ".claude/**"
+level = "High"
+reason = "Agent roles and settings"
+
+[[rule]]
+glob = "Cargo.toml"
+level = "High"
+reason = "Dependencies of the shell"
+
+[[rule]]
+glob = "Cargo.lock"
+level = "High"
+reason = "Locked dependencies"
+
+[[rule]]
+glob = "rust-toolchain.toml"
+level = "High"
+reason = "The compiler every machine and CI use"
+
+[[rule]]
+glob = "build.rs"
+level = "High"
+reason = "Code that runs at build time"
+
+[[rule]]
+glob = "tauri.conf.json"
+level = "High"
+reason = "Window, security, and bundle settings"
+
+[[rule]]
+glob = "capabilities/**"
+level = "High"
+reason = "What the web view may call"
+
+[[rule]]
+glob = ".gitattributes"
+level = "High"
+reason = "Line endings the checks compare"
+
+[[rule]]
+glob = "src/**"
+level = "Low"
+reason = "Rust code of the shell"
+
+[[rule]]
+glob = "tests/**"
+level = "Low"
+reason = "Tests are locked by the test-lock check"
+
+[[rule]]
+glob = "ui/**"
+level = "Low"
+reason = "The placeholder page"
+
+[[rule]]
+glob = "icons/**"
+level = "Low"
+reason = "App icons"
+
+[[rule]]
+glob = "tasks/**"
+level = "Low"
+reason = "Task files"
+
+[[rule]]
+glob = "README.md"
+level = "Low"
+reason = "Documentation"
+
+[[rule]]
+glob = ".gitignore"
+level = "Low"
+reason = "Ignored files"

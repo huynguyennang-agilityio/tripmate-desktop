@@ -36,8 +36,8 @@ function checks() {
   if (manifest) {
     const m = ["--manifest-path", manifest];
     list.push(
-      { name: "cargo clippy", cmd: "cargo", args: ["clippy", ...m, "--all-targets", "--", "-D", "warnings"] },
-      { name: "cargo test", cmd: "cargo", args: ["test", ...m] },
+      { name: "cargo clippy", cmd: "cargo", args: ["clippy", "--locked", ...m, "--all-targets", "--", "-D", "warnings"] },
+      { name: "cargo test", cmd: "cargo", args: ["test", "--locked", ...m] },
     );
   }
   return list;
